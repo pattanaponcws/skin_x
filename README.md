@@ -10,7 +10,7 @@ for test in skin_x co,.ltd.UI inspire from medium.
 ตั้งค่าการเข้าถึง database ใน /server/.env จากนั้นเข้าไปที่ folder รันคำสั่งตามด้านล่าง
 ```
 # ดึง schema จากฐานข้อมูลมาอัปเดตไฟล์ Prisma (ใช้ทดสอบการเชื่อมต่อด้วย)
-npx prisma db pull
+npx prisma db push
 
 # รัน seed script เพื่อใส่ข้อมูลตัวอย่างลงในฐานข้อมูล
 node prisma/seed.js
