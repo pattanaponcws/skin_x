@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  username   String?  @unique
+  password   String?
+  createdAt  DateTime @default(now())
+  email      String
+  provider   String
+  providerId String?
+}
+
+model Post {
+  id       Int       @id @default(autoincrement())
+  title    String
+  content  String    @db.LongText
+  postedAt DateTime
+  postedBy String
+  tags     PostTag[]
+}
+
+model Tag {
+  id    Int       @id @default(autoincrement())
+  name  String    @unique
+  posts PostTag[]
+}
+
+model PostTag {
+  postId Int
+  tagId  Int
+  post   Post @relation(fields: [postId], references: [id])
+  tag    Tag  @relation(fields: [tagId], references: [id])
+
+  @@id([postId, tagId])
+  @@index([tagId], map: "PostTag_tagId_fkey")
+}

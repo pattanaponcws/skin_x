@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS skin_x;
+
+USE skin_x;
